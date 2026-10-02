@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7b6cc">
+
+<title>Our Story — The Album</title>
+
+<style>
+
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --pink: #f4a9c4;
+    --light-pink: #ffdce8;
+    --dark-pink: #b84f78;
+    --deep-pink: #7e284c;
+    --cream: #fff8fb;
+    --black: #170e12;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background:
+        radial-gradient(
+            circle at center,
+            #3a1828 0%,
+            #170e12 65%,
+            #0b0709 100%
+        );
+
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   PORTADA
+========================= */
+
+.cover {
+    min-height: 100svh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px 20px;
+
+    position: relative;
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.cover.hide {
+    opacity: 0;
+    transform: scale(1.12);
+    pointer-events: none;
+}
+
+.small-title {
+    font-size: 9px;
+    letter-spacing: 5px;
+    color: #e9b4c7;
+    margin-bottom: 34px;
+}
+
+
+/* =========================
+   VINILO
+========================= */
+
+.disc-button {
+    border: none;
+    background: transparent;
+    padding: 0;
+
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.vinyl {
+    width: min(76vw, 330px);
+    aspect-ratio: 1;
+
+    border-radius: 50%;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        repeating-radial-gradient(
+            circle,
+            #090709 0px,
+            #090709 2px,
+            #171217 3px,
+            #080608 4px
+        );
+
+    box-shadow:
+        0 0 35px rgba(244,169,196,.22),
+        0 0 90px rgba(244,169,196,.08),
+        inset 0 0 35px rgba(0,0,0,.9);
+
+    animation: vinylSpin 8s linear infinite;
+
+    transition:
+        box-shadow .4s ease,
+        transform .5s ease;
+}
+
+.vinyl:hover {
+    box-shadow:
+        0 0 45px rgba(244,169,196,.45),
+        0 0 100px rgba(244,169,196,.15),
+        inset 0 0 35px rgba(0,0,0,.9);
+}
+
+@keyframes vinylSpin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* Reflejo del vinilo */
+
+.vinyl::before {
+    content: "";
+
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 20%,
+            rgba(255,255,255,.08) 35%,
+            transparent 50%
+        );
+
+    pointer-events: none;
+}
+
+
+/* Etiqueta central */
+
+.label {
+    position: absolute;
+
+    width: 42%;
+    height: 42%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffd6e4 0%,
+            #f4a9c4 55%,
+            #d9799d 100%
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    color: #54182f;
+
+    box-shadow:
+        inset 0 0 15px rgba(0,0,0,.15);
+}
+
+.label-title {
+    font-family: Georgia, serif;
+
+    font-size: clamp(9px, 2.6vw, 14px);
+
+    letter-spacing: 2px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+}
+
+.label-subtitle {
+    margin-top: 7px;
+
+    font-size: 6px;
+
+    letter-spacing: 2px;
+}
+
+
+/* Agujero */
+
+.center-hole {
+    position: absolute;
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: #1b0c12;
+
+    border: 2px solid #f4a9c4;
+
+    z-index: 5;
+}
+
+
+/* =========================
+   TEXTO
+========================= */
+
+.album-title {
+    margin-top: 40px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-weight: normal;
+
+    font-size: clamp(25px, 7vw, 38px);
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #fff3f7;
+}
+
+.album-subtitle {
+    margin-top: 10px;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    color: #dca4b8;
+}
+
+.tap {
+    margin-top: 48px;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    color: #f1c1d2;
+
+    animation: breathe 2s infinite;
+}
+
+@keyframes breathe {
+
+    50% {
+        opacity: .35;
+    }
+
+}
+
+
+/* =========================
+   TRANSICIÓN VINILO
+========================= */
+
+.vinyl-transition {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 50;
+
+    background: #0c080a;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+}
+
+.vinyl-transition.active {
+    display: flex;
+
+    animation: transitionFade 2.4s forwards;
+}
+
+.transition-record {
+
+    width: 65vw;
+    max-width: 330px;
+
+    aspect-ratio: 1;
+
+    border-radius: 50%;
+
+    background:
+        repeating-radial-gradient(
+            circle,
+            #050505 0px,
+            #050505 2px,
+            #181015 3px,
+            #050505 4px
+        );
+
+    box-shadow:
+        0 0 80px rgba(244,169,196,.25);
+
+    position: relative;
+
+    animation:
+        transitionSpin 2.2s linear,
+        transitionZoom 2.2s ease;
+}
+
+.transition-label {
+
+    position: absolute;
+
+    width: 38%;
+    height: 38%;
+
+    border-radius: 50%;
+
+    background: #f4a9c4;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+}
+
+.transition-hole {
+
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #32101f;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+@keyframes transitionSpin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(720deg);
+    }
+
+}
+
+@keyframes transitionZoom {
+
+    from {
+        scale: 1;
+    }
+
+    to {
+        scale: 3;
+    }
+
+}
+
+@keyframes transitionFade {
+
+    0% {
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================
+   PANTALLA DEL VÍDEO
+========================= */
+
+.video-screen {
+
+    display: none;
+
+    min-height: 100svh;
+
+    padding: 35px 18px;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    animation: videoAppear 1.2s ease;
+}
+
+.video-screen.show {
+    display: flex;
+}
+
+@keyframes videoAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+.track {
+
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+    color: #e0a8bc;
+
+    margin-bottom: 14px;
+}
+
+.video-title {
+
+    font-family: Georgia, serif;
+
+    font-size: clamp(26px, 7vw, 42px);
+
+    font-weight: normal;
+
+    color: #fff5f8;
+
+    margin-bottom: 28px;
+}
+
+.video-box {
+
+    width: 100%;
+
+    max-width: 700px;
+
+    border: 1px solid #683348;
+
+    background: #000;
+
+    box-shadow:
+        0 15px 60px rgba(0,0,0,.5);
+
+}
+
+video {
+
+    width: 100%;
+
+    display: block;
+
+    max-height: 70vh;
+
+    object-fit: contain;
+}
+
+.video-note {
+
+    margin-top: 24px;
+
+    max-width: 340px;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    font-style: italic;
+
+    color: #cda5b4;
+}
+
+
+/* =========================
+   PANTALLA FINAL
+========================= */
+
+.end-screen {
+
+    display: none;
+
+    min-height: 100svh;
+
+    padding: 35px;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #54223a 0%,
+            #1a0b12 60%,
+            #090507 100%
+        );
+
+    animation: endAppear 2s ease;
+}
+
+.end-screen.show {
+    display: flex;
+}
+
+@keyframes endAppear {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+.end-small {
+
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+    color: #dba6ba;
+
+    margin-bottom: 30px;
+}
+
+.end-title {
+
+    font-family: Georgia, serif;
+
+    font-weight: normal;
+
+    font-size: clamp(34px, 10vw, 58px);
+
+    line-height: 1.1;
+
+    color: #ffeaf1;
+}
+
+.end-text {
+
+    max-width: 400px;
+
+    margin-top: 30px;
+
+    font-family: Georgia, serif;
+
+    font-size: 16px;
+
+    line-height: 1.9;
+
+    color: #e4bfcd;
+}
+
+.end-line {
+
+    width: 50px;
+
+    height: 1px;
+
+    background: #d884a4;
+
+    margin: 35px 0;
+}
+
+.end-credit {
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    color: #9d687c;
+
+}
+
+
+/* =========================
+   BOTÓN FINAL
+========================= */
+
+.restart {
+
+    margin-top: 38px;
+
+    background: transparent;
+
+    border: 1px solid #8f526c;
+
+    color: #dba7ba;
+
+    padding: 12px 25px;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+}
+
+.restart:hover {
+
+    background: #f4a9c4;
+
+    color: #2a101b;
+}
+
+
+/* =========================
+   MÓVIL
+========================= */
+
+@media (max-width: 400px) {
+
+    .album-title {
+        font-size: 24px;
+    }
+
+    .small-title {
+        font-size: 8px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =================================
+     PORTADA
+================================= -->
+
+<main class="cover" id="cover">
+
+    <p class="small-title">
+        A SPECIAL EDITION · VOL. 01
+    </p>
+
+
+    <button
+        class="disc-button"
+        id="playButton"
+        aria-label="Reproducir"
+    >
+
+        <div class="vinyl">
+
+            <div class="label">
+
+                <span class="label-title">
+                    OUR STORY
+                </span>
+
+                <span class="label-subtitle">
+                    2023 — ∞
+                </span>
+
+            </div>
+
+            <div class="center-hole"></div>
+
+        </div>
+
+    </button>
+
+
+    <h1 class="album-title">
+        OUR STORY
+    </h1>
+
+
+    <p class="album-subtitle">
+        A COLLECTION OF MEMORIES
+    </p>
+
+
+    <p class="tap">
+        TAP THE VINYL TO PLAY
+    </p>
+
+</main>
+
+
+
+<!-- =================================
+     TRANSICIÓN
+================================= -->
+
+<div
+    class="vinyl-transition"
+    id="transition"
+>
+
+    <div class="transition-record">
+
+        <div class="transition-label"></div>
+
+        <div class="transition-hole"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =================================
+     VÍDEO
+================================= -->
+
+<section
+    class="video-screen"
+    id="videoScreen"
+>
+
+    <p class="track">
+        TRACK 01 · SIDE A
+    </p>
+
+
+    <h2 class="video-title">
+        For you.
+    </h2>
+
+
+    <div class="video-box">
+
+        <video
+            id="myVideo"
+            controls
+            playsinline
+            preload="metadata"
+        >
+
+            <!--
+                CAMBIA "TU_VIDEO.mp4"
+                POR EL NOMBRE O URL DE TU VÍDEO
+            -->
+
+            <source
+                src="TU_VIDEO.mp4"
+                type="video/mp4"
+            >
+
+            Tu navegador no puede reproducir este vídeo.
+
+        </video>
+
+    </div>
+
+
+    <p class="video-note">
+        Some memories deserve to be kept forever.
+    </p>
+
+</section>
+
+
+
+<!-- =================================
+     FINAL
+================================= -->
+
+<section
+    class="end-screen"
+    id="endScreen"
+>
+
+    <p class="end-small">
+        END OF SIDE A
+    </p>
+
+
+    <h2 class="end-title">
+        To be continued.
+    </h2>
+
+
+    <div class="end-line"></div>
+
+
+    <p class="end-text">
+
+        This isn't the end of our story.
+        <br>
+        It's just the part we've lived so far.
+
+    </p>
+
+
+    <p class="end-credit">
+        MADE WITH LOVE · FOR YOU
+    </p>
+
+
+    <button
+        class="restart"
+        id="restart"
+    >
+        PLAY AGAIN
+    </button>
+
+</section>
+
+
+
+<script>
+
+/* =================================
+   ELEMENTOS
+================================= */
+
+const playButton =
+    document.getElementById("playButton");
+
+const cover =
+    document.getElementById("cover");
+
+const transition =
+    document.getElementById("transition");
+
+const videoScreen =
+    document.getElementById("videoScreen");
+
+const endScreen =
+    document.getElementById("endScreen");
+
+const video =
+    document.getElementById("myVideo");
+
+const restart =
+    document.getElementById("restart");
+
+
+/* =================================
+   TOCAR EL VINILO
+================================= */
+
+playButton.addEventListener("click", () => {
+
+    /* Ocultamos portada */
+
+    cover.classList.add("hide");
+
+    /* Activamos transición */
+
+    transition.classList.add("active");
+
+
+    /*
+        Esperamos a que termine
+        la animación del vinilo.
+    */
+
+    setTimeout(() => {
+
+        transition.classList.remove("active");
+
+        cover.style.display = "none";
+
+        videoScreen.classList.add("show");
+
+        /*
+            Algunos móviles bloquean
+            el autoplay.
+
+            Si lo permiten,
+            el vídeo empieza solo.
+        */
+
+        video.play().catch(() => {
+
+            // El usuario podrá pulsar play.
+
+        });
+
+    }, 2300);
+
+});
+
+
+/* =================================
+   CUANDO TERMINA EL VÍDEO
+================================= */
+
+video.addEventListener("ended", () => {
+
+    videoScreen.classList.remove("show");
+
+    endScreen.classList.add("show");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+
+
+/* =================================
+   VOLVER A EMPEZAR
+================================= */
+
+restart.addEventListener("click", () => {
+
+    video.pause();
+
+    video.currentTime = 0;
+
+    endScreen.classList.remove("show");
+
+    cover.style.display = "flex";
+
+    cover.classList.remove("hide");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+
+</script>
+
+
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7b6cc">
+
+<title>Our Story — The Album</title>
+
+<style>
+
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --pink: #f4a9c4;
+    --light-pink: #ffdce8;
+    --dark-pink: #b84f78;
+    --deep-pink: #7e284c;
+    --cream: #fff8fb;
+    --black: #170e12;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background:
+        radial-gradient(
+            circle at center,
+            #3a1828 0%,
+            #170e12 65%,
+            #0b0709 100%
+        );
+
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   PORTADA
+========================= */
+
+.cover {
+    min-height: 100svh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px 20px;
+
+    position: relative;
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.cover.hide {
+    opacity: 0;
+    transform: scale(1.12);
+    pointer-events: none;
+}
+
+.small-title {
+    font-size: 9px;
+    letter-spacing: 5px;
+    color: #e9b4c7;
+    margin-bottom: 34px;
+}
+
+
+/* =========================
+   VINILO
+========================= */
+
+.disc-button {
+    border: none;
+    background: transparent;
+    padding: 0;
+
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.vinyl {
+    width: min(76vw, 330px);
+    aspect-ratio: 1;
+
+    border-radius: 50%;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        repeating-radial-gradient(
+            circle,
+            #090709 0px,
+            #090709 2px,
+            #171217 3px,
+            #080608 4px
+        );
+
+    box-shadow:
+        0 0 35px rgba(244,169,196,.22),
+        0 0 90px rgba(244,169,196,.08),
+        inset 0 0 35px rgba(0,0,0,.9);
+
+    animation: vinylSpin 8s linear infinite;
+
+    transition:
+        box-shadow .4s ease,
+        transform .5s ease;
+}
+
+.vinyl:hover {
+    box-shadow:
+        0 0 45px rgba(244,169,196,.45),
+        0 0 100px rgba(244,169,196,.15),
+        inset 0 0 35px rgba(0,0,0,.9);
+}
+
+@keyframes vinylSpin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* Reflejo del vinilo */
+
+.vinyl::before {
+    content: "";
+
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 20%,
+            rgba(255,255,255,.08) 35%,
+            transparent 50%
+        );
+
+    pointer-events: none;
+}
+
+
+/* Etiqueta central */
+
+.label {
+    position: absolute;
+
+    width: 42%;
+    height: 42%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffd6e4 0%,
+            #f4a9c4 55%,
+            #d9799d 100%
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    color: #54182f;
+
+    box-shadow:
+        inset 0 0 15px rgba(0,0,0,.15);
+}
+
+.label-title {
+    font-family: Georgia, serif;
+
+    font-size: clamp(9px, 2.6vw, 14px);
+
+    letter-spacing: 2px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+}
+
+.label-subtitle {
+    margin-top: 7px;
+
+    font-size: 6px;
+
+    letter-spacing: 2px;
+}
+
+
+/* Agujero */
+
+.center-hole {
+    position: absolute;
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: #1b0c12;
+
+    border: 2px solid #f4a9c4;
+
+    z-index: 5;
+}
+
+
+/* =========================
+   TEXTO
+========================= */
+
+.album-title {
+    margin-top: 40px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-weight: normal;
+
+    font-size: clamp(25px, 7vw, 38px);
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #fff3f7;
+}
+
+.album-subtitle {
+    margin-top: 10px;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    color: #dca4b8;
+}
+
+.tap {
+    margin-top: 48px;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    color: #f1c1d2;
+
+    animation: breathe 2s infinite;
+}
+
+@keyframes breathe {
+
+    50% {
+        opacity: .35;
+    }
+
+}
+
+
+/* =========================
+   TRANSICIÓN VINILO
+========================= */
+
+.vinyl-transition {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 50;
+
+    background: #0c080a;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+}
+
+.vinyl-transition.active {
+    display: flex;
+
+    animation: transitionFade 2.4s forwards;
+}
+
+.transition-record {
+
+    width: 65vw;
+    max-width: 330px;
+
+    aspect-ratio: 1;
+
+    border-radius: 50%;
+
+    background:
+        repeating-radial-gradient(
+            circle,
+            #050505 0px,
+            #050505 2px,
+            #181015 3px,
+            #050505 4px
+        );
+
+    box-shadow:
+        0 0 80px rgba(244,169,196,.25);
+
+    position: relative;
+
+    animation:
+        transitionSpin 2.2s linear,
+        transitionZoom 2.2s ease;
+}
+
+.transition-label {
+
+    position: absolute;
+
+    width: 38%;
+    height: 38%;
+
+    border-radius: 50%;
+
+    background: #f4a9c4;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+}
+
+.transition-hole {
+
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #32101f;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+@keyframes transitionSpin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(720deg);
+    }
+
+}
+
+@keyframes transitionZoom {
+
+    from {
+        scale: 1;
+    }
+
+    to {
+        scale: 3;
+    }
+
+}
+
+@keyframes transitionFade {
+
+    0% {
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================
+   PANTALLA DEL VÍDEO
+========================= */
+
+.video-screen {
+
+    display: none;
+
+    min-height: 100svh;
+
+    padding: 35px 18px;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    animation: videoAppear 1.2s ease;
+}
+
+.video-screen.show {
+    display: flex;
+}
+
+@keyframes videoAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+.track {
+
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+    color: #e0a8bc;
+
+    margin-bottom: 14px;
+}
+
+.video-title {
+
+    font-family: Georgia, serif;
+
+    font-size: clamp(26px, 7vw, 42px);
+
+    font-weight: normal;
+
+    color: #fff5f8;
+
+    margin-bottom: 28px;
+}
+
+.video-box {
+
+    width: 100%;
+
+    max-width: 700px;
+
+    border: 1px solid #683348;
+
+    background: #000;
+
+    box-shadow:
+        0 15px 60px rgba(0,0,0,.5);
+
+}
+
+video {
+
+    width: 100%;
+
+    display: block;
+
+    max-height: 70vh;
+
+    object-fit: contain;
+}
+
+.video-note {
+
+    margin-top: 24px;
+
+    max-width: 340px;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    font-style: italic;
+
+    color: #cda5b4;
+}
+
+
+/* =========================
+   PANTALLA FINAL
+========================= */
+
+.end-screen {
+
+    display: none;
+
+    min-height: 100svh;
+
+    padding: 35px;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #54223a 0%,
+            #1a0b12 60%,
+            #090507 100%
+        );
+
+    animation: endAppear 2s ease;
+}
+
+.end-screen.show {
+    display: flex;
+}
+
+@keyframes endAppear {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+.end-small {
+
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+    color: #dba6ba;
+
+    margin-bottom: 30px;
+}
+
+.end-title {
+
+    font-family: Georgia, serif;
+
+    font-weight: normal;
+
+    font-size: clamp(34px, 10vw, 58px);
+
+    line-height: 1.1;
+
+    color: #ffeaf1;
+}
+
+.end-text {
+
+    max-width: 400px;
+
+    margin-top: 30px;
+
+    font-family: Georgia, serif;
+
+    font-size: 16px;
+
+    line-height: 1.9;
+
+    color: #e4bfcd;
+}
+
+.end-line {
+
+    width: 50px;
+
+    height: 1px;
+
+    background: #d884a4;
+
+    margin: 35px 0;
+}
+
+.end-credit {
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    color: #9d687c;
+
+}
+
+
+/* =========================
+   BOTÓN FINAL
+========================= */
+
+.restart {
+
+    margin-top: 38px;
+
+    background: transparent;
+
+    border: 1px solid #8f526c;
+
+    color: #dba7ba;
+
+    padding: 12px 25px;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+}
+
+.restart:hover {
+
+    background: #f4a9c4;
+
+    color: #2a101b;
+}
+
+
+/* =========================
+   MÓVIL
+========================= */
+
+@media (max-width: 400px) {
+
+    .album-title {
+        font-size: 24px;
+    }
+
+    .small-title {
+        font-size: 8px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =================================
+     PORTADA
+================================= -->
+
+<main class="cover" id="cover">
+
+    <p class="small-title">
+        A SPECIAL EDITION · VOL. 01
+    </p>
+
+
+    <button
+        class="disc-button"
+        id="playButton"
+        aria-label="Reproducir"
+    >
+
+        <div class="vinyl">
+
+            <div class="label">
+
+                <span class="label-title">
+                    OUR STORY
+                </span>
+
+                <span class="label-subtitle">
+                    2023 — ∞
+                </span>
+
+            </div>
+
+            <div class="center-hole"></div>
+
+        </div>
+
+    </button>
+
+
+    <h1 class="album-title">
+        OUR STORY
+    </h1>
+
+
+    <p class="album-subtitle">
+        A COLLECTION OF MEMORIES
+    </p>
+
+
+    <p class="tap">
+        TAP THE VINYL TO PLAY
+    </p>
+
+</main>
+
+
+
+<!-- =================================
+     TRANSICIÓN
+================================= -->
+
+<div
+    class="vinyl-transition"
+    id="transition"
+>
+
+    <div class="transition-record">
+
+        <div class="transition-label"></div>
+
+        <div class="transition-hole"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =================================
+     VÍDEO
+================================= -->
+
+<section
+    class="video-screen"
+    id="videoScreen"
+>
+
+    <p class="track">
+        TRACK 01 · SIDE A
+    </p>
+
+
+    <h2 class="video-title">
+        For you.
+    </h2>
+
+
+    <div class="video-box">
+
+        <video
+            id="myVideo"
+            controls
+            playsinline
+            preload="metadata"
+        >
+
+            <!--
+                CAMBIA "TU_VIDEO.mp4"
+                POR EL NOMBRE O URL DE TU VÍDEO
+            -->
+
+            <source
+                src="TU_VIDEO.mp4"
+                type="video/mp4"
+            >
+
+            Tu navegador no puede reproducir este vídeo.
+
+        </video>
+
+    </div>
+
+
+    <p class="video-note">
+        Some memories deserve to be kept forever.
+    </p>
+
+</section>
+
+
+
+<!-- =================================
+     FINAL
+================================= -->
+
+<section
+    class="end-screen"
+    id="endScreen"
+>
+
+    <p class="end-small">
+        END OF SIDE A
+    </p>
+
+
+    <h2 class="end-title">
+        To be continued.
+    </h2>
+
+
+    <div class="end-line"></div>
+
+
+    <p class="end-text">
+
+        This isn't the end of our story.
+        <br>
+        It's just the part we've lived so far.
+
+    </p>
+
+
+    <p class="end-credit">
+        MADE WITH LOVE · FOR YOU
+    </p>
+
+
+    <button
+        class="restart"
+        id="restart"
+    >
+        PLAY AGAIN
+    </button>
+
+</section>
+
+
+
+<script>
+
+/* =================================
+   ELEMENTOS
+================================= */
+
+const playButton =
+    document.getElementById("playButton");
+
+const cover =
+    document.getElementById("cover");
+
+const transition =
+    document.getElementById("transition");
+
+const videoScreen =
+    document.getElementById("videoScreen");
+
+const endScreen =
+    document.getElementById("endScreen");
+
+const video =
+    document.getElementById("myVideo");
+
+const restart =
+    document.getElementById("restart");
+
+
+/* =================================
+   TOCAR EL VINILO
+================================= */
+
+playButton.addEventListener("click", () => {
+
+    /* Ocultamos portada */
+
+    cover.classList.add("hide");
+
+    /* Activamos transición */
+
+    transition.classList.add("active");
+
+
+    /*
+        Esperamos a que termine
+        la animación del vinilo.
+    */
+
+    setTimeout(() => {
+
+        transition.classList.remove("active");
+
+        cover.style.display = "none";
+
+        videoScreen.classList.add("show");
+
+        /*
+            Algunos móviles bloquean
+            el autoplay.
+
+            Si lo permiten,
+            el vídeo empieza solo.
+        */
+
+        video.play().catch(() => {
+
+            // El usuario podrá pulsar play.
+
+        });
+
+    }, 2300);
+
+});
+
+
+/* =================================
+   CUANDO TERMINA EL VÍDEO
+================================= */
+
+video.addEventListener("ended", () => {
+
+    videoScreen.classList.remove("show");
+
+    endScreen.classList.add("show");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+
+
+/* =================================
+   VOLVER A EMPEZAR
+================================= */
+
+restart.addEventListener("click", () => {
+
+    video.pause();
+
+    video.currentTime = 0;
+
+    endScreen.classList.remove("show");
+
+    cover.style.display = "flex";
+
+    cover.classList.remove("hide");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+
+</script>
+
+
+</body>
+</html>
